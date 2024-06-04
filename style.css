@@ -1,23 +1,65 @@
+
 *{
     box-sizing: border-box;
     margin: 0;
 }
-
 body{
     margin: 0;
-    background-image: none; /*Agregar Imagen de Fondo*/
+    background-color: #F6F4F3;
+    font-family: Montserrat;
 } 
 
+:root{
+    --cafe: #86654B;
+    --negro: #111111;
+}
+/*-------------Contenedor General---------------*/
+.general-container{
+    border: 1px solid var(--negro);
+}
 /*-------------------Header-------------------*/
-
 .header{
-    border: 1px solid #111;
+    border-bottom: 1.3px solid var(--negro);
     padding: 30px;
-}
+    width: 90%;
+    height: 150px;
+    margin: auto;
+    align-items: center;
+    display: flex;
+    top: 0;
 
-.header a{
-    padding: 0 20px;
-    color: #86654B;
-    
 }
+.header a img{
+    height: 100px;
+    float: left;
+}
+.header-center{
+    width: 90%;
+    text-align: center;
+}
+.header-center a{
+    padding: 10px 20px;
+    color: var(--cafe);
+    font-weight:bolder;
+    text-decoration: none;
+}
+.header-center a:hover{
+    padding: 10px 20px;
+    color: var(--cafe);
+    font-weight:bolder;
+    text-decoration: none;
+    border-bottom: 3px solid var(--cafe);
+    transition: 0.1s;
+}
+/*---------------Contenedor Cartas-----------------*/
+.cards-container{
 
+    padding: 40px 100px;
+}
+.card-principal img{
+    width: 100%;
+    height: 400px;
+    margin: auto;
+    object-fit: cover;
+}
+/*  */
