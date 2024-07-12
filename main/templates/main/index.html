@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "main/css/style.css" %}">
+    <link rel="icon" type="image/x-icon" href="{% static "main/img/favicon.png" %}">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+    <title>Tauriel - Peluquería Canina</title>
+</head>
+<body>
+    <div class="general-container">
+        <div class="header">
+            <a href="" class="logo">
+                <img src="{% static "main/img/logo.png" %}">
+            </a>
+            <div class="header-center">
+                <a href="">INICIO</a>
+                <a href="">AGENDA TU HORA</a>
+                <a href="">SERVICIOS</a> 
+                <a href="">CONTACTO</a>
+            </div>
+        </div>
+        <div class="cards-container">
+            <div class="card-principal">
+                <img src="{% static "main/img/perro1.jpg" %}" alt="">
+            </div>
+        </div>
+    </div>
+    <h2>Hacer una reservación</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="nombre_cliente">Nombre del Cliente:</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente" required><br>
+
+        <label for="telefono_cliente">Teléfono del Cliente:</label>
+        <input type="text" id="telefono_cliente" name="telefono_cliente" required><br>
+        
+        <label for="servicio">Servicio: </label>
+        <select id="servicio" name="servicio">
+            {% for servicio in form.servicio.field.queryset %}
+                <option value="{{ servicio.id }}"> {{ servicio.nombre }} - ${{servicio.precio}} </option>
+            {% endfor %}
+        </select><br>
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br>
+
+        <label for="hora" >Hora: </label>
+        <select id="hora" name="hora">
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>            
+        </select><br>
+        <button type="submit">Reservar</button>
+    </form>
+    {% if reservacion %}
+        <h2>Confirmación de Reservación</h2>
+        <p>Has reservado el servicio {{reservacion.servicio.nombre}} para el día {{reservacion.fecha}} a las {{reservacion.hora}}.</p>
+        <p>Nombre del cliente: {{reservacion.nombre_cliente}}</p>
+        <p>Teléfono del Cliente: {{reservacion.telefono_cliente}} </p>
+        <p><a href="https://api.whatsapp.com/send?phone={{ numero_telefono_de_la_duena }}&text={{ reservacion.mensaje_whatsapp|urlencode }}">Enviar detalles por WhatsApp</a> </p>
+    {% endif %}
+
+</body>
+</html>
