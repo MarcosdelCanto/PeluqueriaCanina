@@ -1,21 +1,23 @@
+:root{
+    --cafe: #86654B;
+    --negro: #111111;
+    --fondo: #F6F4F3;
+}
 
 *{
     box-sizing: border-box;
     margin: 0;
+    font-family: Montserrat;
 }
 body{
     margin: 0;
-    background-color: #F6F4F3;
-    font-family: Montserrat;
+    background-color: var(--fondo);
 } 
 
-:root{
-    --cafe: #86654B;
-    --negro: #111111;
-}
+
 /*-------------Contenedor General---------------*/
 .general-container{
-    border: 1px solid var(--negro);
+    border: 1px solid transparent;
 }
 /*-------------------Header-------------------*/
 .header{
@@ -53,7 +55,6 @@ body{
 }
 /*---------------Contenedor Cartas-----------------*/
 .cards-container{
-
     padding: 40px 100px;
 }
 .card-principal img{
@@ -62,4 +63,115 @@ body{
     margin: auto;
     object-fit: cover;
 }
-/*  */
+/* contenedor formulario */
+
+.contenedor-formulario{
+    border: solid 2px var(--cafe);
+    border-radius: 13px;
+    width: fit-content;
+    padding: 40px;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.contenedor-formulario input, select{
+    border: solid 1px var(--cafe);
+    border-radius: 7px;
+    font-size: large;
+    background-color: var(--fondo);
+}
+
+.contenedor-formulario button.boton-formulario{
+    margin: auto;
+    border: solid 1px var(--fondo);
+    border-radius: 7px;
+    font-size: large;
+    background-color: var(--cafe);
+    color: var(--fondo);
+    transition: .5s;
+    padding: 10px 20px;
+}
+
+.contenedor-formulario button.boton-formulario:hover{
+    margin: auto;
+    border: solid 1px var(--cafe);
+    border-radius: 7px;
+    font-size: large;
+    background-color: var(--fondo);
+    color: var(--cafe);
+    transition: .5s;
+    padding: 10px 20px;
+}
+
+/* footer */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: var(--cafe);
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 10px 5px;
+    flex-wrap: wrap;
+}
+
+.icon-elem {
+    list-style: none;
+}
+
+.icon {
+    color: white;
+    font-size: 32px;
+    display: inline-block;
+    margin: 0 10px;
+    transition: 0.5s;
+}
+
+.icon:hover {
+    transform: translateY(-10px);
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.menu-elem {
+    list-style: none;
+}
+.menu-icon {
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px 10px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.menu-icon:hover {
+    opacity: 1;
+}
+
+.text {
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}

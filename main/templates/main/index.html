@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{% static "main/css/style.css" %}">
     <link rel="icon" type="image/x-icon" href="{% static "main/img/favicon.png" %}">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-
+    <script src="https://kit.fontawesome.com/801590c25c.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <title>Tauriel - Peluquería Canina</title>
 </head>
 <body>
@@ -29,37 +30,40 @@
             </div>
         </div>
     </div>
-    <h2>Hacer una reservación</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="nombre_cliente">Nombre del Cliente:</label>
-        <input type="text" id="nombre_cliente" name="nombre_cliente" required><br>
+    
+    <div class="contenedor-formulario">
+        <h2>Hacer una reservación</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="nombre_cliente">Nombre del Cliente:</label>
+            <input type="text" id="nombre_cliente" name="nombre_cliente" required><br>
 
-        <label for="telefono_cliente">Teléfono del Cliente:</label>
-        <input type="text" id="telefono_cliente" name="telefono_cliente" required><br>
-        
-        <label for="servicio">Servicio: </label>
-        <select id="servicio" name="servicio">
-            {% for servicio in form.servicio.field.queryset %}
-                <option value="{{ servicio.id }}"> {{ servicio.nombre }} - ${{servicio.precio}} </option>
-            {% endfor %}
-        </select><br>
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required><br>
+            <label for="telefono_cliente">Teléfono del Cliente:</label>
+            <input type="text" id="telefono_cliente" name="telefono_cliente" required><br>
+            
+            <label for="servicio">Servicio: </label>
+            <select id="servicio" name="servicio">
+                {% for servicio in form.servicio.field.queryset %}
+                    <option value="{{ servicio.id }}"> {{ servicio.nombre }} - ${{servicio.precio}} </option>
+                {% endfor %}
+            </select><br>
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required><br>
 
-        <label for="hora" >Hora: </label>
-        <select id="hora" name="hora">
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>            
-        </select><br>
-        <button type="submit">Reservar</button>
-    </form>
+            <label for="hora" >Hora: </label>
+            <select id="hora" name="hora">
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>            
+            </select><br>
+            <button class="boton-formulario" type="submit">Reservar</button>
+        </form>
+    </div>
     {% if reservacion %}
         <h2>Confirmación de Reservación</h2>
         <p>Has reservado el servicio {{reservacion.servicio.nombre}} para el día {{reservacion.fecha}} a las {{reservacion.hora}}.</p>
@@ -67,6 +71,63 @@
         <p>Teléfono del Cliente: {{reservacion.telefono_cliente}} </p>
         <p><a href="https://api.whatsapp.com/send?phone={{ numero_telefono_de_la_duena }}&text={{ reservacion.mensaje_whatsapp|urlencode }}">Enviar detalles por WhatsApp</a> </p>
     {% endif %}
+    <div class="sobre-nosotros">
+        <h2>Sobre nosotros</h2>
+        <div class="container-nosotros">
+            <section class="nosotros">
+                {% comment %} falta agregar resto del div {% endcomment %}
 
+            </section>
+        </div>
+        <img src="" alt="">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laborum voluptates sit in officiis, tempore nihil mollitia deleniti id. Deleniti quod odit vitae at beatae maxime dicta id ipsum est.</p>
+
+
+    </div>
+    {% comment %} empeiza footer {% endcomment %}
+    <footer class="footer">
+        <ul class="social-icon">
+        <li class="icon-elem">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="icon">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+        </li>
+        <li class="icon-elem">
+            <a href="https://wa.link/kwo6rm" target="_blank" rel="noopener noreferrer" class="icon">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+            </a>
+        </li>
+        <li class="icon-elem">
+            <a href="https://web.facebook.com/" target="_blank" rel="noopener noreferrer" class="icon">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+        </li>
+        <li class="icon-elem">
+            <a href="mailto:carolina.advbascuar@gmail.com" target="_blank" rel="noopener noreferrer" class="icon">
+                <ion-icon name="mail-outline"></ion-icon>
+            </a>
+        </li>
+    </ul>
+    <ul class="menu">
+        <li class="menu-elem">
+            <a href="#" class="menu-icon"> Inicio </a>
+        </li>
+        <li class="menu-elem">
+            <a href="#" class="menu-icon">Agenda tu hora</a>
+        </li>
+        <li class="menu-elem">
+            <a href="#" class="menu-icon"> Sobre Nosotros </a>
+        </li>
+    </ul>
+    <p class="text">2024 | Todos los derechos reservados</p>
+    </footer>
+    <script
+        type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
+    </script>
+    <script
+        nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
+    </script>
 </body>
 </html>
