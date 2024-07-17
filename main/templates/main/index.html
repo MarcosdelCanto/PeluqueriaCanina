@@ -18,10 +18,9 @@
                 <img src="{% static "main/img/logo.png" %}">
             </a>
             <div class="header-center">
-                <a href="">INICIO</a>
-                <a href="">AGENDA TU HORA</a>
-                <a href="">SERVICIOS</a> 
-                <a href="">CONTACTO</a>
+                <a href="/">INICIO</a>
+                <a href="#contenedor-formulario">AGENDA TU HORA</a>
+                <a href="#contenedor-sobre-nosotros">SOBRE NOSOTROS</a>
             </div>
         </div>
         <div class="cards-container">
@@ -31,58 +30,77 @@
         </div>
     </div>
     
-    <div class="contenedor-formulario">
+    <div class="contenedor-formulario" id="contenedor-formulario">
         <h2>Hacer una reservación</h2>
-        <form method="post">
+        <form method="post" onsubmit="enviarWhatsapp(event)">
             {% csrf_token %}
-            <label for="nombre_cliente">Nombre del Cliente:</label>
-            <input type="text" id="nombre_cliente" name="nombre_cliente" required><br>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="td-izq">
+                                <label for="nombre_cliente">Nombre del Cliente:</label>
+                                <input type="text" id="nombre_cliente" name="nombre_cliente" required><br>
 
-            <label for="telefono_cliente">Teléfono del Cliente:</label>
-            <input type="text" id="telefono_cliente" name="telefono_cliente" required><br>
-            
-            <label for="servicio">Servicio: </label>
-            <select id="servicio" name="servicio">
-                {% for servicio in form.servicio.field.queryset %}
-                    <option value="{{ servicio.id }}"> {{ servicio.nombre }} - ${{servicio.precio}} </option>
-                {% endfor %}
-            </select><br>
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required><br>
+                                <label for="telefono_cliente">Teléfono del Cliente:</label>
+                                <input type="text" id="telefono_cliente" name="telefono_cliente" required><br>
+                                
+                            </div>
+                        </td>
+                        <td>
+                            <div class="td-der">
+                                <label for="servicio">Servicio: </label>
+                                <select id="servicio" name="servicio">
+                                    {% for servicio in form.servicio.field.queryset %}
+                                        <option value="{{ servicio.id }}"> {{ servicio.nombre }} - ${{servicio.precio}} </option>
+                                    {% endfor %}
+                                </select><br>
 
-            <label for="hora" >Hora: </label>
-            <select id="hora" name="hora">
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>            
-            </select><br>
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" id="fecha" name="fecha" required><br>
+                            
+                                <label for="hora" >Hora: </label>
+                                <select id="hora" name="hora">
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>            
+                                </select><br>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <button class="boton-formulario" type="submit">Reservar</button>
         </form>
     </div>
     {% if reservacion %}
+    <div class="resevacion">
         <h2>Confirmación de Reservación</h2>
         <p>Has reservado el servicio {{reservacion.servicio.nombre}} para el día {{reservacion.fecha}} a las {{reservacion.hora}}.</p>
         <p>Nombre del cliente: {{reservacion.nombre_cliente}}</p>
         <p>Teléfono del Cliente: {{reservacion.telefono_cliente}} </p>
-        <p><a href="https://api.whatsapp.com/send?phone={{ numero_telefono_de_la_duena }}&text={{ reservacion.mensaje_whatsapp|urlencode }}">Enviar detalles por WhatsApp</a> </p>
+        <p><a href="#" onclick="enviarWhatsapp(envent)">Enviar detalles por WhatsApp</a> </p>
+    </div>
     {% endif %}
-    <div class="sobre-nosotros">
-        <h2>Sobre nosotros</h2>
-        <div class="container-nosotros">
-            <section class="nosotros">
-                {% comment %} falta agregar resto del div {% endcomment %}
-
-            </section>
-        </div>
-        <img src="" alt="">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laborum voluptates sit in officiis, tempore nihil mollitia deleniti id. Deleniti quod odit vitae at beatae maxime dicta id ipsum est.</p>
-
-
+    <div class="container-sobre-nosotros" id="contenedor-sobre-nosotros">
+        <section class="nosotros">
+            <div class="nosotros-imagen">
+                <img src="{% static "main/img/sra.jpeg" %}" alt="emprendedora">
+            </div>
+            <div class="nosotros-contenido">
+                <h2>Sobre nosotros</h2>
+                <p>Mi nombre es María Eugenia, soy amante de los animales y me considero una persona 
+                    preocupada por la comunidad y el bienestar de los animales. Mi pasión por los animales, en 
+                    especifico los perritos fue lo que me llevó a iniciar mi emprendimiento de Peluquería Canina, que lleva el
+                    nombre de mi mascota Tauriel.
+                </p>
+            </div>
+        </section>
     </div>
     {% comment %} empeiza footer {% endcomment %}
     <footer class="footer">
@@ -110,13 +128,13 @@
     </ul>
     <ul class="menu">
         <li class="menu-elem">
-            <a href="#" class="menu-icon"> Inicio </a>
+            <a href="/" class="menu-icon"> Inicio </a>
         </li>
         <li class="menu-elem">
-            <a href="#" class="menu-icon">Agenda tu hora</a>
+            <a href="#contenedor-formulario" class="menu-icon">Agenda tu hora</a>
         </li>
         <li class="menu-elem">
-            <a href="#" class="menu-icon"> Sobre Nosotros </a>
+            <a href="#contenedor-sobre-nosotros" class="menu-icon"> Sobre Nosotros </a>
         </li>
     </ul>
     <p class="text">2024 | Todos los derechos reservados</p>
@@ -129,5 +147,6 @@
         nomodule
         src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
     </script>
+    <script src="{% static "main/mensajews.js" %}"></script>
 </body>
 </html>

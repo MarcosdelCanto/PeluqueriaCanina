@@ -6,14 +6,15 @@
 
 *{
     box-sizing: border-box;
-    margin: 0;
     font-family: Montserrat;
 }
 body{
     margin: 0;
     background-color: var(--fondo);
 } 
-
+html{
+    scroll-behavior: smooth;
+}
 
 /*-------------Contenedor General---------------*/
 .general-container{
@@ -74,15 +75,22 @@ body{
     margin-bottom: 50px;
 }
 
+.contenedor-formulario h2{
+    margin: 20px;
+}
+
 .contenedor-formulario input, select{
     border: solid 1px var(--cafe);
     border-radius: 7px;
     font-size: large;
     background-color: var(--fondo);
+    margin: 10px;
 }
 
 .contenedor-formulario button.boton-formulario{
+    display: flex;
     margin: auto;
+    margin-top: 30px;
     border: solid 1px var(--fondo);
     border-radius: 7px;
     font-size: large;
@@ -94,6 +102,7 @@ body{
 
 .contenedor-formulario button.boton-formulario:hover{
     margin: auto;
+    margin-top: 30PX;
     border: solid 1px var(--cafe);
     border-radius: 7px;
     font-size: large;
@@ -101,6 +110,18 @@ body{
     color: var(--cafe);
     transition: .5s;
     padding: 10px 20px;
+}
+
+.td-der{
+    margin: 0px 50px;
+}
+
+.td-izq{
+    margin: 0px 50px;
+}
+
+td{
+    margin: 0px 50px;
 }
 
 /* footer */
@@ -174,4 +195,42 @@ body{
     margin-top: 15px;
     margin-bottom: 10px;
     font-size: 20px;
+}
+/* sobre nosotros */
+
+.container-sobre-nosotros{
+    width: 90%;
+    margin:0 auto;
+    padding: 10px 20px;
+    margin-bottom: 50px
+}
+.nosotros{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.nosotros-imagen{
+    margin-right: 50px;
+    overflow: hidden;
+}
+.nosotros-imagen img{
+    
+    height: 300px;
+    display: block;
+    transition: 0.5s ease;
+}
+.nosotros-contenido{
+    flex: 1;
+}
+.nosotros-contenido h2{
+    font-size:40px ;
+    margin-bottom: 40px;
+    color: var(--cafe);
+}
+.nosotros-contenido p{
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--cafe);
 }
